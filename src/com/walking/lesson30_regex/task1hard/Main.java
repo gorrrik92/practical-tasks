@@ -1,5 +1,9 @@
 package com.walking.lesson30_regex.task1hard;
 
+import javax.swing.plaf.synth.SynthTextAreaUI;
+import java.util.Scanner;
+import java.util.regex.Pattern;
+
 /**
  * Реализуйте boolean-метод, валидирующий входящую строку.
  * Метод должен возвращать true,
@@ -15,6 +19,14 @@ package com.walking.lesson30_regex.task1hard;
  * или использования символов-разделителей в другом порядке считаем невалидным)
  */
 public class Main {
+    private static final String PHONE_NUMBER_MASK = "\\+7\\s?\\(?\\d{3}\\)?\\s?\\d{3}-?\\d{2}-?\\d{2}";
+
     public static void main(String[] args) {
+        System.out.println("Enter new phone number");;
+        Scanner sc = new Scanner(System.in);
+        String phoneNumber = sc.nextLine();
+        sc.close();
+        boolean result = phoneNumber.matches(PHONE_NUMBER_MASK);
+        System.out.printf("PhoneNumber is related to correct format = %b", result);
     }
 }
