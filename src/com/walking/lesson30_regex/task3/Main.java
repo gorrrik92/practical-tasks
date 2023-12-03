@@ -16,8 +16,8 @@ import java.util.Scanner;
  * должно быть выброшено исключение.
  */
 public class Main {
-    private static final String STRING_DELIMETER_MASK = "[\\t \\s]*";
-    private static final String WORD_MASK = "[a-zA-ZА-Яа-я]*";
+    private static final String STRING_DELIMETER_MASK = "[\\t \\s]+";
+    private static final String WORD_MASK = "[a-zA-ZА-Яа-я]+";
     private static final String WORD_DELIMETER = "-";
 
 
