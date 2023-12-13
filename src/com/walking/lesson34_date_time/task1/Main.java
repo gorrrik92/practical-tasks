@@ -14,9 +14,9 @@ public class Main {
 
     public static void main(String[] args) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_FORMATTER);
-        System.out.printf("Enter the date in the format %s:\n", DATE_FORMATTER);
+        System.out.printf("Enter the date in the format %s\n", DATE_FORMATTER);
         Scanner sc = new Scanner(System.in);
-        String dateString = sc.next();
+        String dateString = sc.nextLine();
 
         LocalDateTime parsedDate = parsedDate(dateString, formatter);
         System.out.println(parsedDate);
