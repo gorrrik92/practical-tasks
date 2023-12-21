@@ -25,7 +25,7 @@ public class Main {
         System.out.println(testStack.getSize());
         System.out.println(testStack);
 
-        testStack = testStack.reverse();
+        testStack.reverse();
         testStack.deleteByEvenHashCode();
         System.out.println(testStack);
     }

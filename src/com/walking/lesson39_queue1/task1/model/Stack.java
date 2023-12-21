@@ -63,14 +63,15 @@ public class Stack<T> {
         }
     }
 
-    public Stack reverse() {
-        Stack reversStack = new Stack(top.value);
-        Node<T> next = top;
-        while (next.next != null) {
-            reversStack.add(next.next.value);
-            next = next.next;
+    public void reverse() {
+        Node<T> prev = null;
+        while (top != null) {
+            Node<T> next = top.next;
+            top.next = prev;
+            prev = top;
+            top = next;
         }
-        return reversStack;
+        top = prev;
     }
 
     public T find(T element) {
