@@ -4,7 +4,6 @@ import com.walking.lesson40_queue2.model.Task;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
-import java.util.Iterator;
 
 public class TaskService {
     private Deque<Task> tasks;
