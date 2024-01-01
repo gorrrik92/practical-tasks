@@ -26,13 +26,6 @@ public class Main {
         animals.add(new Dog());
         animals.add(new Cow());
 
-        printAnimals(animals);
-    }
-
-    private static void printAnimals(List<Animal> animals) {
-        Consumer<Animal> sound = x-> x.sound();
-        for(Animal a : animals) {
-            sound.accept(a);
-        }
+        animals.forEach(animal -> animal.sound());
     }
 }
