@@ -3,22 +3,22 @@ package com.walking.lesson42_tree.task1.model;
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-public class BeSearchTree {
+public class BinarySearchTree {
     private Node root;
 
-    public BeSearchTree(Node root) {
+    public BinarySearchTree(Node root) {
         this.root = root;
     }
 
-    public BeSearchTree() {
+    public BinarySearchTree() {
     }
 
     public Node getRoot() {
         return root;
     }
 
-    public void insert(int key, int value) {
-        Node newNode = new Node(key, value);
+    public void insert(int key) {
+        Node newNode = new Node(key);
         if (root == null) {
             root = newNode;
         } else {
@@ -39,18 +39,38 @@ public class BeSearchTree {
                 insert(node.getRight(), newNode);
             }
         }
-        node.setHeight(getNewHeight(node));
+        updateHeight(node);
     }
 
-    private int getNewHeight(Node node) {
-        return Math.max(getHeight(node.getLeft()),
+    public void updateHeight(Node node) {
+        int height = Math.max(getHeight(node.getLeft()),
                 getHeight(node.getRight())) +1;
+        node.setHeight(height);
     }
+
     public int getHeight(Node node) {
         if (node == null)
             return -1;
         else
             return node.getHeight();
+    }
+
+    public Node getMaxNode(Node node) {
+        if (node.getRight() == null)
+            return node;
+        return getMaxNode(node.getRight());
+    }
+
+    public Node getMinNode(Node node) {
+        if (node.getLeft() == null)
+            return node;
+        return getMinNode(node.getLeft());
+    }
+
+    public void deleteNode(Node rootNode, int key) {
+        Node node = search(rootNode, key);
+        if (node == null)
+            return;
     }
 
     public Node search(int key) {
@@ -123,6 +143,6 @@ public class BeSearchTree {
     }
 
     private void print(Node node) {
-        System.out.printf("%d ", node.getValue());
+        System.out.printf("%d(%d) ", node.getKey(), node.getHeight());
     }
 }

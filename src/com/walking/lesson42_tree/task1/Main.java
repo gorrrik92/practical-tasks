@@ -1,11 +1,8 @@
 package com.walking.lesson42_tree.task1;
 
-import com.walking.lesson42_tree.task1.model.BeSearchTree;
-import com.walking.lesson42_tree.task1.model.Node;
+import com.walking.lesson42_tree.task1.model.BinarySearchTree;
 
 import java.util.Scanner;
-import java.util.Set;
-import java.util.TreeSet;
 
 /**
  * Реализуйте бинарное дерево поиска. Учтите возможность использования дерева как для Comparable-сущностей,
@@ -22,14 +19,14 @@ import java.util.TreeSet;
  */
 public class Main {
     public static void main(String[] args) {
-        BeSearchTree tree = new BeSearchTree();
+        BinarySearchTree tree = new BinarySearchTree();
         System.out.println("Enter the elements:");
         Scanner sc = new Scanner(System.in);
         String elements = sc.nextLine();
         String[] elArray = elements.trim().split(" ");
         for (int i = 0; i < elArray.length; i++) {
             int el = Integer.parseInt(elArray[i]);
-            tree.insert(el, el);
+            tree.insert(el);
         }
         sc.close();
         System.out.println("Go around centered:");

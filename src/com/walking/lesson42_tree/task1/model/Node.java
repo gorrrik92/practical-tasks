@@ -2,14 +2,12 @@ package com.walking.lesson42_tree.task1.model;
 
 public class Node implements Comparable<Node>{
     private int key;
-    private int value;
     private Node left;
     private Node right;
     private int height;
 
-    public Node(int key, int value) {
+    public Node(int key) {
         this.key = key;
-        this.value = value;
         this.height = 0;
     }
 
@@ -17,9 +15,6 @@ public class Node implements Comparable<Node>{
         return key;
     }
 
-    public int getValue() {
-        return value;
-    }
 
     public Node getLeft() {
         return left;
