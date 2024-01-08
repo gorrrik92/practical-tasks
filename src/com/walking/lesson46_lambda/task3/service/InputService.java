@@ -73,39 +73,34 @@ public class InputService {
         scanner.close();
     }
 
-    private void printCars(List<Car> cars) {
-         for (Car car : cars) {
-             System.out.println(car);
-         }
-    }
-
     private void findCarsByTheNumber() {
         System.out.println(NUMBER_MENU_MESSAGE);
         String number = scanner.next();
-        CarFilter filter = new CarNumberFilter(number);
-        printCars(carService.findCars(filter));
+        findAndPrintCarsdByTheFilter(new CarNumberFilter(number));
     }
 
     private void findCarsByTheColor() {
         System.out.println(COLOR_MENU_MESSAGE);
         String color = scanner.next();
-        CarFilter filter = new CarColorFilter(color);
-        printCars(carService.findCars(filter));
+        findAndPrintCarsdByTheFilter(new CarColorFilter(color));
     }
 
     private void findCarsByTheYearRange() {
         System.out.println(YEAR_MENU_MESSAGE);
         Integer yearFrom = scanner.nextInt();
         Integer yearTo = scanner.nextInt();
-        CarFilter filter = new CarYearBetweenFilter(yearFrom, yearTo);
-        printCars(carService.findCars(filter));
+        findAndPrintCarsdByTheFilter(new CarYearBetweenFilter(yearFrom, yearTo));
     }
 
     private void findCarsByTheNumperPart() {
         System.out.println(NUMBER_PART_MENU_MESSAGE);
         String number = scanner.next();
-        CarFilter filter = new CarNumberContainsFilter(number);
-        printCars(carService.findCars(filter));
+        findAndPrintCarsdByTheFilter(new CarNumberContainsFilter(number));
+    }
+
+    private void findAndPrintCarsdByTheFilter(CarFilter filter) {
+        List<Car> resultCars = carService.findCars(car -> filter.filter(car));
+        resultCars.forEach(car -> System.out.println(car));
     }
 
     private void pressAnyKey() throws IOException {

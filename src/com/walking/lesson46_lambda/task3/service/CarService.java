@@ -6,6 +6,7 @@ import com.walking.lesson46_lambda.task3.model.CarIdentifier;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 public class CarService {
     private final List<Car> cars;
@@ -15,13 +16,12 @@ public class CarService {
     }
 
     //    Упростим реализацию метода в сравнении с вариантом в уроке 19 для большей наглядности
-    public List<Car> findCars(CarFilter filter) {
+    public List<Car> findCars(Predicate<Car> filter) {
         List<Car> result = new ArrayList<>();
-        for (Car car : cars) {
-            if (filter.filter(car)) {
+        cars.forEach(car -> {
+            if (filter.test(car))
                 result.add(car);
-            }
-        }
+        });
 //        По желанию можно выбросить исключение
         return result;
     }
