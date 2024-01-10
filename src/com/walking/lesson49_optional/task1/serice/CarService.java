@@ -17,11 +17,6 @@ public class CarService {
     }
 
     public Optional<Car> findCar(CarIdentifier identifier) {
-        return cars
-                .entrySet()
-                .stream()
-                .filter(c->c.getKey().equals(identifier))
-                .map(c->c.getValue())
-                .findFirst();
+        return Optional.ofNullable(cars.get(identifier));
     }
 }
