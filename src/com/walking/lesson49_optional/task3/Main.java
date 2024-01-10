@@ -1,5 +1,15 @@
 package com.walking.lesson49_optional.task3;
 
+import com.walking.lesson49_optional.task3.model.Animal;
+import com.walking.lesson49_optional.task3.model.Cat;
+import com.walking.lesson49_optional.task3.model.Cow;
+import com.walking.lesson49_optional.task3.model.Dog;
+
+import java.util.AbstractMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 /**
  * Реализуйте абстрактный класс «Животное», содержащий абстрактный метод sound().
  * Также реализуйте трех наследников: кота, собаку и корову.
@@ -14,5 +24,31 @@ package com.walking.lesson49_optional.task3;
  */
 public class Main {
     public static void main(String[] args) {
+        List<Animal> animals = new ArrayList<>(3);
+        animals.add(new Cat());
+        animals.add(new Dog());
+        animals.add(new Cow());
+        animals.add(null);
+
+        animals.forEach(animal -> getAnimalInfo(animal));
+    }
+
+    private static void getAnimalInfo(Animal animal) {
+        Optional.ofNullable(animal)
+                .filter(a -> Cat.class.equals(a.getClass()))
+                .map(a -> new AbstractMap.SimpleEntry<>("Cat", a))
+                .or(() -> Optional.ofNullable(animal)
+                        .filter(a -> Dog.class.equals(a.getClass()))
+                        .map(a -> new AbstractMap.SimpleEntry<>("Dog", a)))
+                .or(() -> Optional.ofNullable(animal)
+                        .filter(a -> Cow.class.equals(a.getClass()))
+                        .map(a -> new AbstractMap.SimpleEntry<>("Cow", a)))
+                .ifPresentOrElse(entry ->
+                                System.out.printf("This is %s. It says '%s'\n", entry.getKey(), entry.getValue().sound()),
+//                        Больше для демонстрации. Мы не можем использовать throw,
+//                        если пишем лямбду в одно строку (без {}). Зато используя {} - можем
+                        () -> {
+                            throw new RuntimeException("Unknown animal or null");
+                        });
     }
 }
