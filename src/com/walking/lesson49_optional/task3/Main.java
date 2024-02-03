@@ -5,10 +5,9 @@ import com.walking.lesson49_optional.task3.model.Cat;
 import com.walking.lesson49_optional.task3.model.Cow;
 import com.walking.lesson49_optional.task3.model.Dog;
 
-import java.util.AbstractMap;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * Реализуйте абстрактный класс «Животное», содержащий абстрактный метод sound().
@@ -29,8 +28,7 @@ public class Main {
         animals.add(new Dog());
         animals.add(new Cow());
         animals.add(null);
-
-        animals.forEach(animal -> getAnimalInfo(animal));
+        animals.forEach(Main::getAnimalInfo);
     }
 
     private static void getAnimalInfo(Animal animal) {
@@ -45,10 +43,8 @@ public class Main {
                         .map(a -> new AbstractMap.SimpleEntry<>("Cow", a)))
                 .ifPresentOrElse(entry ->
                                 System.out.printf("This is %s. It says '%s'\n", entry.getKey(), entry.getValue().sound()),
-//                        Больше для демонстрации. Мы не можем использовать throw,
-//                        если пишем лямбду в одно строку (без {}). Зато используя {} - можем
                         () -> {
-                            throw new RuntimeException("Unknown animal or null");
+                            System.out.println("Unknown animal or null");
                         });
     }
 }
